@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Student Management System</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+	<div class="container">
+
+		<h3>Student Directory</h3>
+		<hr>
+		
+		 <!-- Add a button for adding Employee  -->
+		<a th:href="@{/showFormForAdd}" class="btn btn-primary btn-sm mb-3">Add Student</a> 
+
+		<table class="table table-dark table-hover">
+			<thead>
+				<tr>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Email</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr th:each="tempStudent : ${students}">
+					<td th:text="${tempStudent.firstName}" />
+					<td th:text="${tempStudent.lastName}" />
+					<td th:text="${tempStudent.email}" />
+					
+					<!-- Add update button  -->
+					 <td>
+						<a th:href="@{/showFormForUpdate(studentId=${tempStudent.id})}" 
+								class="btn btn-info btn-sm">Update</a>
+						
+						<a th:href="@{/showFormForDelete(studentId=${tempStudent.id})}"
+							class="btn btn-danger btn-sm">Delete</a>
+					</td> 
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+</body>
+</html>
